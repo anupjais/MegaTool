@@ -22,7 +22,12 @@ import {
   PDFAcroTerminal,
   AnnotationFlags,
 } from 'src/core';
-import { assertIs, assertMultiple, assertOrUndefined } from 'src/utils';
+import {
+  addRandomSuffix,
+  assertIs,
+  assertMultiple,
+  assertOrUndefined,
+} from 'src/utils';
 import { ImageAlignment } from '../image';
 import PDFImage from '../PDFImage';
 import { drawImage, rotateInPlace } from '../operations';
@@ -288,7 +293,6 @@ export default class PDFField {
     rotate: Rotation;
     caption?: string;
     hidden?: boolean;
-    page?: PDFRef;
   }): PDFWidgetAnnotation {
     const textColor = options.textColor;
     const backgroundColor = options.backgroundColor;
@@ -301,7 +305,6 @@ export default class PDFField {
     const width = options.width + borderWidth;
     const height = options.height + borderWidth;
     const hidden = Boolean(options.hidden);
-    const pageRef = options.page;
 
     assertMultiple(degreesAngle, 'degreesAngle', 90);
 
@@ -315,8 +318,6 @@ export default class PDFField {
       degreesAngle,
     );
     widget.setRectangle(rect);
-
-    if (pageRef) widget.setP(pageRef);
 
     const ac = widget.getOrCreateAppearanceCharacteristics();
     if (backgroundColor) {
@@ -488,7 +489,7 @@ export default class PDFField {
       options.y = adj.height - borderWidth - imageDims.height;
     }
 
-    const imageName = this.doc.context.addRandomSuffix('Image', 10);
+    const imageName = addRandomSuffix('Image', 10);
     const appearance = [...rotate, ...drawImage(imageName, options)];
     ////////////
 
