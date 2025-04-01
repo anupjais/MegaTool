@@ -22,7 +22,7 @@
     "node-pdftk": "^2.1.3",
     "node-qpdf2": "^6.0.0",
     "path": "^0.12.7",
-    "pdf-lib": "^1.17.1",
+    "pdf-lib": "^1.16.0",
     "pdfkit": "^0.16.0",
     "qpdf": "^0.1.0-prealpha.1",
     "sharp": "^0.33.5",

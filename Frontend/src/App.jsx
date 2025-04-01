@@ -1,10 +1,11 @@
-
 import { useState } from "react";
 import ImageConverter from "./components/ImageConverter/ImageConverter";
 import PdfTools from "./components/PdfTools/PdfTools";
+import QrCodeGenerator from "./components/QR-Code/QrCodeGenerator";
 
 function Navbar() {
   const [dropdown, setDropdown] = useState(null);
+  const [qrTool, setQrTool] = useState("");
 
   return (
     <div>
@@ -68,10 +69,16 @@ function Navbar() {
             </button>
             {dropdown === "qr" && (
               <ul className="absolute right-0 bg-white p-2 shadow-lg w-48 border rounded-md">
-                <li className="p-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  className="p-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => setQrTool("textToQR")}
+                >
                   Text to QR
                 </li>
-                <li className="p-2 hover:bg-gray-200 cursor-pointer">
+                <li
+                  className="p-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => setQrTool("imageToQR")}
+                >
                   Image to QR
                 </li>
               </ul>
@@ -81,7 +88,10 @@ function Navbar() {
       </nav>
 
       {/* Sections */}
-      <section id="image-tools" className="px-5 py-10 bg-gray-100 text-center mt-20">
+      <section
+        id="image-tools"
+        className="px-5 py-10 bg-gray-100 text-center mt-20"
+      >
         <h2 className="text-2xl font-bold">Image Tools</h2>
 
         {/* Image Conversion Section */}
@@ -100,8 +110,9 @@ function Navbar() {
         {/* Image Compression Section */}
         <div className="mt-6 p-4 bg-white shadow-md rounded-lg">
           <h3 className="text-xl font-semibold">Image Compression</h3>
-          <p className="text-gray-600">Reduce image size while maintaining quality.</p>
-          
+          <p className="text-gray-600">
+            Reduce image size while maintaining quality.
+          </p>
         </div>
       </section>
 
@@ -109,14 +120,13 @@ function Navbar() {
         <h2 className="text-2xl font-bold">PDF Tools</h2>
         <p>Merge, split, and convert PDFs with ease.</p>
         <div className="mt-6 p-4 bg-white shadow-md rounded-lg">
-          
           {/* Render PdfTools Component */}
           <div className="mt-4">
             <PdfTools />
           </div>
         </div>
       </section>
-      
+
       <section id="qr-tools" className="px-5 py-10 bg-gray-100 text-center">
         <h2 className="text-2xl font-bold">QR Tools</h2>
         <p>Generate QR codes from text or images.</p>
