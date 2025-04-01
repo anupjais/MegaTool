@@ -7,10 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Node modules and build directories
 node_modules
 dist
 dist-ssr
 *.local
+build/
+
+# Coverage directory for test coverage reports
+coverage/
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +31,6 @@ dist-ssr
 .env.*
 *.env
 
+# Optional: OS-specific files
+# Thumbs.db
+# ehthumbs.db
